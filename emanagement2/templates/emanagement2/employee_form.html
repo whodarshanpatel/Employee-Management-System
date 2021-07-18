@@ -1,0 +1,44 @@
+{% extends "emanagement2/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form.fullname|as_crispy_field}}
+    &nbsp
+    {{form.salary|as_crispy_field}}
+    &nbsp
+    <div class="row">
+        &nbsp
+        <div class="col-md-8">
+            {{form.department|as_crispy_field}}
+            &nbsp
+        </div>
+    
+        <div class="col-md-4">
+            {{form.emp_code|as_crispy_field}}
+            &nbsp
+        </div>
+    </div>
+    &nbsp
+    
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg">
+                 Click to Submit
+            </button>
+            <!-- <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>&nbspSubmit</button> -->
+            
+        </div>
+        
+        <div class="col-md-4">
+            <a href="{% url 'employee_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fa fa-folder"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

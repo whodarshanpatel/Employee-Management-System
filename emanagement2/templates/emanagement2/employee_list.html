@@ -1,0 +1,51 @@
+{% extends "emanagement2/base.html" %}
+
+
+{% block content %}
+
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Emp_Code</td>
+            <td>Department</td>
+            <td>Salary</td>
+            
+
+            
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employee_list %}
+            <tr>
+                <td>{{employee.fullname}}</td>
+                <td>{{employee.emp_code}}</td>
+                <td>{{employee.department}}</td>
+                <td>{{employee.salary}}</td>
+                <td>
+                    
+                    <a href="{% url 'employee_update' employee.id %}" class="btn text-dark px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+                     
+                    <form action="{% url 'employee_delete' employee.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn text-danger">
+                            <i class="fa fa-minus-circle red-color float-right"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            
+        {% endfor %}
+       
+        <td>
+            <a href="{% url 'employee_insert' %}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Add New Employee
+            </a>
+        </td>
+    </tbody>
+</table>
+
+{% endblock content %}
